@@ -1,9 +1,12 @@
 ﻿using System;
 
-class Program
+namespace ProjectMOM
 {
-    private static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello, World!");
+        private static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!");
+        }
     }
 }
