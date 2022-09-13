@@ -3,8 +3,25 @@ namespace ProjectMOM
 {
     public class Client
     {
-        public Client()
+        public string nom;
+        public string prenom;
+        public long tel;
+        public string rue;
+        public string ville;
+        public string zip;
+        public DateOnly dateCommande;
+        public int nbCommande;
+
+        public Client(string nom, string prenom, long tel, string rue, string ville, string zip, DateOnly dateCommande, int nbCommande)
         {
+            this.nom = nom;
+            this.prenom = prenom;
+            this.tel = tel;
+            this.rue = rue;
+            this.ville = ville;
+            this.zip = zip;
+            this.dateCommande = dateCommande;
+            this.nbCommande = nbCommande;
         }
     }
 }
