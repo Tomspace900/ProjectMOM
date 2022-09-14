@@ -3,8 +3,8 @@ namespace ProjectMOM
 {
     public class Pizza
     {
-        public int taille;
-        public Type type;
+        public TaillePizza taille;
+        public TypePizza type;
     }
 }
 
