@@ -1,10 +1,18 @@
-﻿using System;
-namespace ProjectMOM
+﻿namespace ProjectMOM
 {
     public enum TypePizza
     {
-        Type1,
-        Type2,
+        Margherita,
+        Reine,
+        QuatreFromages,
+        QuatreSaisons,
+        Calzone,
+        ChevreMiel,
+        Saumon,
+        Hawaienne,
+        Salami,
+        Raclette,
+        Kebab,
     }
 }
 

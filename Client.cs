@@ -12,7 +12,7 @@ namespace ProjectMOM
         public DateOnly dateCommande;
         public int nbCommande;
 
-        public Client(string nom, string prenom, long tel, string rue, string ville, string zip, DateOnly dateCommande, int nbCommande)
+        public Client(string nom, string prenom, long tel, string rue, string ville, string zip, DateOnly dateCommande)
         {
             this.nom = nom;
             this.prenom = prenom;
@@ -21,7 +21,11 @@ namespace ProjectMOM
             this.ville = ville;
             this.zip = zip;
             this.dateCommande = dateCommande;
-            this.nbCommande = nbCommande;
+        }
+
+        public void addCommande()
+        {
+            nbCommande += 1;
         }
     }
 }

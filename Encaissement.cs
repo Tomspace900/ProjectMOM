@@ -1,5 +1,4 @@
-﻿using System;
-namespace ProjectMOM
+﻿namespace ProjectMOM
 {
     public enum Encaissement
     {
