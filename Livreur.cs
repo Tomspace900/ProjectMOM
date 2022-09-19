@@ -8,11 +8,11 @@ namespace ProjectMOM
         public List<Commande> commandesLivrees;
         public int nbCommandes = 0;
 
-        public Livreur(int id, List<Commande> commandesALivrer, List<Commande> commandesLivrees)
+        public Livreur(int id)
         {
             this.id = id;
-            this.commandesALivrer = commandesALivrer;
-            this.commandesLivrees = commandesLivrees;
+            this.commandesALivrer = new List<Commande>();
+            this.commandesLivrees = new List<Commande>();
         }
 
         // Ajoute une commande à la liste commandesALivrer et change son statut

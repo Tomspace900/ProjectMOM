@@ -6,13 +6,13 @@ namespace ProjectMOM
         public int id;
         public List<Commande> commandesEnAttenteLivraison;
         public List<Commande> commandesLivrees;
-        public int nbCommandes = 0;
+        public int nbCommandes = 0; // Pour les stats
 
-        public Commis(int id, List<Commande> commandesEnAttenteLivraison, List<Commande> commandesLivrees)
+        public Commis(int id)
         {
             this.id = id;
-            this.commandesEnAttenteLivraison = commandesEnAttenteLivraison;
-            this.commandesLivrees = commandesLivrees;
+            this.commandesEnAttenteLivraison = new List<Commande>();
+            this.commandesLivrees = new List<Commande>();
         }
 
         public void prendreCommande()

@@ -5,9 +5,9 @@ namespace ProjectMOM
     {
         public List<Commande> comandesAFaire;
 
-        public Cuisine(List<Commande> comandesAFaire)
+        public Cuisine()
         {
-            this.comandesAFaire = comandesAFaire;
+            this.comandesAFaire = new List<Commande>();
         }
     }
 }

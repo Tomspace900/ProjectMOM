@@ -8,15 +8,15 @@ namespace ProjectMOM
         public long tel;
         public string rue;
         public string ville;
-        public string zip;
+        public int zip;
         public DateOnly dateCommande;
         public int nbCommande;
 
-        public Client(string nom, string prenom, long tel, string rue, string ville, string zip, DateOnly dateCommande)
+        public Client(long tel, string nom, string prenom, string rue, string ville, int zip, DateOnly dateCommande)
         {
+            this.tel = tel;
             this.nom = nom;
             this.prenom = prenom;
-            this.tel = tel;
             this.rue = rue;
             this.ville = ville;
             this.zip = zip;
