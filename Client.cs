@@ -10,7 +10,7 @@ namespace ProjectMOM
         public string ville;
         public int zip;
         public DateOnly dateCommande;
-        public int nbCommande;
+        public int nbCommande; // Pour les stats
 
         public Client(long tel, string nom, string prenom, string rue, string ville, int zip, DateOnly dateCommande)
         {
