@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ProjectMOM
 {
-    public class Pizza
+    public class Pizza : IConsommable
     {
         public TaillePizza taille;
         public TypePizza type;
@@ -14,12 +14,23 @@ namespace ProjectMOM
             CalculerPrix(taille, type);
         }
 
+        public double getPrix()
+        {
+            return totalPrice;
+        }
+
+        public string getNom()
+        {
+            return (type.ToString() + " " + taille.ToString());
+        }
+
+        // Calcule le prix en fonction de la taille et du type
         public void CalculerPrix(TaillePizza taille, TypePizza type)
         {
-
             this.totalPrice = PrixType(type, PrixTaille(taille));
         }
 
+        // Prix de base en fonction de la taille
         public double PrixTaille(TaillePizza taille)
         {
             double price = 0;
@@ -42,6 +53,7 @@ namespace ProjectMOM
             else throw new Exception("La taille de pizza n'existe pas");
         }
 
+        // Addition en fonction de la garniture
         public double PrixType(TypePizza type, double price)
         {
             if (type == TypePizza.Calzone)
