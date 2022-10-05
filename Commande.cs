@@ -13,12 +13,30 @@ namespace ProjectMOM
         public Client client;
         public Commis commis;
 
+        public int V { get; }
+        public DateOnly DateOnly { get; }
+
         public Commande(int num, DateOnly date, Client client, Commis commis)
         {
             this.num = num;
             this.date = date;
             this.client = client;
             this.commis = commis;
+        }
+
+
+        public static void createCommande1(Commis commis, Client client)
+        {
+            Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), client, commis);
+       
+            Thread.SetData(Thread.GetNamedDataSlot("Commande"), commande);
+        }
+
+        public static void createCommande2(Commis commis, Client client)
+        {
+            Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), new Client(01223562, "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360, DateOnly.FromDateTime(DateTime.Today)), commis);
+
+            Thread.SetData(Thread.GetNamedDataSlot("Commande"), commande);
         }
 
         public void addPizza(TaillePizza taille, TypePizza type)

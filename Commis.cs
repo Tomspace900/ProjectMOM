@@ -6,7 +6,7 @@ namespace ProjectMOM
         public int id;
         public List<Commande> commandesEnAttenteLivraison;
         public List<Commande> commandesLivrees;
-        public int nbCommandes = 0; // Pour les stats
+        public static int nbCommandes = 0; // Pour les stats
 
         public Commis(int id)
         {
@@ -15,10 +15,17 @@ namespace ProjectMOM
             this.commandesLivrees = new List<Commande>();
         }
 
-        public void prendreCommande()
+        //Création d'un client
+        public void creerClient()
         {
-            // Ca va etre la grosse fonction avec new Commande
+            Pizzeria.clientList.createClient(01223562, "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360);
+        }
+
+        public static void createCommande1(Commis commis,Client client)
+        {
             nbCommandes += 1;
+            Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), client, commis);
+            Thread.SetData(Thread.GetNamedDataSlot("Commande"), commande);
         }
 
         // Attribue une commande à un livreur

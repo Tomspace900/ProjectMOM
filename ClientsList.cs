@@ -29,6 +29,18 @@ namespace ProjectMOM
             var today = DateOnly.FromDateTime(DateTime.Now); // Date de la 1ere commande = today
             clientsList.Add(new Client(tel, nom, prenom, rue, ville, zip, today));
         }
+
+        public Client getByTel(long tel)
+        {
+            foreach (Client client in clientsList)
+            {
+                if (tel == client.tel)
+                {
+                    return client;
+                }
+            }
+            return null;
+        }
     }
 }
 
