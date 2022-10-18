@@ -4,66 +4,70 @@ namespace ProjectMOM
     public class Commande
     {
         public int num;
-        public float prix;
-        public Statut statut = Statut.EnPreparation;
-        public Encaissement encaissement = Encaissement.APayer;
-        public List<Pizza> pizzas;
-        public List<Boisson> boissons;
-        public DateOnly date;
+        public double prix = 0;
         public Client client;
         public Commis commis;
+        public List<Pizza> pizzas = new List<Pizza>();
+        public List<Boisson> boissons = new List<Boisson>();
+        public Statut statut = Statut.EnPreparation;
+        public Encaissement encaissement = Encaissement.APayer;
+        public DateOnly date = DateOnly.FromDateTime(DateTime.Today);
 
-        public int V { get; }
-        public DateOnly DateOnly { get; }
-
-        public Commande(int num, DateOnly date, Client client, Commis commis)
+        public Commande(int num, Client client, Commis commis)
         {
             this.num = num;
-            this.date = date;
             this.client = client;
             this.commis = commis;
-        }
 
-
-        public Pizza randomPizza()
-        {
             Random random = new Random();
-            Array values = Enum.GetValues(typeof(Pizza));
-            int i = random.Next(values.Length);
-            return (Pizza)values.GetValue(i);
+            int nbPizza = random.Next(1, 6); // Nombre de pizzas de la commande aléatoire entre 1 et 5
+            int nbBoisson = random.Next(1, 6); // Pareil pour les boissons
+            for (int i = 0; i < nbPizza; i++)
+            {
+                pizzas.Add(randomPizza(random)); // Ajoute une pizza aléatoire à la commande
+            }
+            for (int i = 0; i < nbBoisson; i++)
+            {
+                boissons.Add(randomBoisson(random)); // Pareil pour les boissons
+            }
         }
 
-        public Boisson randomBoisson()
+        // Actualise le prix de la commande en fonction de ce qui est ajouté
+        public void updatePrice(double price)
         {
-            Random random = new Random();
-            Array values = Enum.GetValues(typeof(Boisson));
-            int i = random.Next(values.Length);
-            return (Boisson)values.GetValue(i);
+            this.prix += price;
         }
 
-
-        //public static void createCommande1(Commis commis, Client client)
-        //{
-        //    Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), client, commis);
-        //}
-
-        //public static void createCommande2(Commis commis, Client client)
-        //{
-        //    Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), new Client(01223562, "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360, DateOnly.FromDateTime(DateTime.Today)), commis);
-        //}
-
-        // Ajoute une pizza à la commande
-        public void addPizza(TaillePizza taille, TypePizza type)
+        // Créé une pizza aléatoire
+        public Pizza randomPizza(Random random)
         {
+            Array tailles = Enum.GetValues(typeof(TaillePizza));
+            int i = random.Next(tailles.Length);
+            TaillePizza taille = (TaillePizza)tailles.GetValue(i);
+
+            Array types = Enum.GetValues(typeof(TypePizza));
+            int j = random.Next(types.Length);
+            TypePizza type = (TypePizza)types.GetValue(j);
+
             Pizza pizza = new Pizza(taille, type);
-            pizzas.Add(pizza);
+            updatePrice(Catalogue.getPrixPizza(pizza)); // Calcule le prix le chaque pizza
+            return pizza;
         }
 
-        // Ajoute une boisson à la commande
-        public void addBoisson(TailleBoisson taille, TypeBoisson type)
+        // Créé une boisson aléatoire
+        public Boisson randomBoisson(Random random)
         {
+            Array tailles = Enum.GetValues(typeof(TailleBoisson));
+            int i = random.Next(tailles.Length);
+            TailleBoisson taille = (TailleBoisson)tailles.GetValue(i);
+
+            Array types = Enum.GetValues(typeof(TypeBoisson));
+            int j = random.Next(types.Length);
+            TypeBoisson type = (TypeBoisson)types.GetValue(j);
+
             Boisson boisson = new Boisson(taille, type);
-            boissons.Add(boisson);
+            updatePrice(Catalogue.getPrixBoisson(boisson)); // Calcule le prix le chaque boisson
+            return boisson;
         }
 
         // Supprime une pizza de la commande
@@ -76,19 +80,6 @@ namespace ProjectMOM
             else
             {
                 Console.WriteLine("La pizza n'est pas dans la commande");
-            }
-        }
-
-        // Supprime une boisson de la commande
-        public void deleteBoisson(Boisson boisson)
-        {
-            if (boissons.Contains(boisson))
-            {
-                boissons.Remove(boisson);
-            }
-            else
-            {
-                Console.WriteLine("La boisson n'est pas dans la commande");
             }
         }
 
