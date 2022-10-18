@@ -57,7 +57,7 @@ namespace ProjectMOM
             TypePizza type = (TypePizza)types.GetValue(j);
 
             Pizza pizza = new Pizza(taille, type);
-            updatePrice(Catalogue.getPrixPizza(pizza), true); // Calcule le prix le chaque pizza
+            updatePrice(pizza.getPrix(), true); // Calcule le prix le chaque pizza
             return pizza;
         }
 
@@ -73,7 +73,7 @@ namespace ProjectMOM
             TypeBoisson type = (TypeBoisson)types.GetValue(j);
 
             Boisson boisson = new Boisson(taille, type);
-            updatePrice(Catalogue.getPrixBoisson(boisson), true); // Calcule le prix le chaque boisson
+            updatePrice(boisson.getPrix(), true); // Calcule le prix le chaque boisson
             return boisson;
         }
 
@@ -83,7 +83,7 @@ namespace ProjectMOM
             if (pizzas.Contains(pizza))
             {
                 pizzas.Remove(pizza);
-                updatePrice(Catalogue.getPrixPizza(pizza), false);
+                updatePrice(pizza.getPrix(), false);
             }
             else
             {
@@ -97,7 +97,7 @@ namespace ProjectMOM
             if (boissons.Contains(boisson))
             {
                 boissons.Remove(boisson);
-                updatePrice(Catalogue.getPrixBoisson(boisson), false);
+                updatePrice(boisson.getPrix(), false);
             }
             else
             {

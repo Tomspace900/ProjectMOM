@@ -41,14 +41,14 @@ namespace ProjectMOM
                 { TypeBoisson.Heineken, 2 },
             };
 
-        public static double getPrixPizza(Pizza pizza)
+        public static double getPrixPizza(TaillePizza taille, TypePizza type)
         {
-            return tabTaillePizza[pizza.taille] + tabTypePizza[pizza.type];
+            return tabTaillePizza[taille] + tabTypePizza[type];
         }
 
-        public static double getPrixBoisson(Boisson boisson)
+        public static double getPrixBoisson(TailleBoisson taille, TypeBoisson type)
         {
-            return tabTailleBoisson[boisson.taille] + tabTypeBoisson[boisson.type];
+            return tabTailleBoisson[taille] + tabTypeBoisson[type];
         }
     }
 }
