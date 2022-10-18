@@ -3,12 +3,13 @@ namespace ProjectMOM
 {
     public class Cuisine
     {
-        public List<Commande> comandesAFaire;
-
         public Cuisine()
         {
-            this.comandesAFaire = new List<Commande>();
+            static async Task Preparer(Commande commande)
+            {
+                int i = commande.pizzas.Count;
+                await Task.Delay(i * 1000); // Temps de preparation proportionnel à la longueur de la commande
+            }
         }
     }
 }
-
