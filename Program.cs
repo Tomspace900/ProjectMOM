@@ -18,6 +18,16 @@ namespace ProjectMOM
             await commis.prendreCommande();
         }
 
+        /*
+        Ordre des Tasks :
 
+        commander (classe main)
+
+        ...
+
+        livrer (classe Livreur)
+        encaisser (classe Commis)
+        terminerCommande (classe Commis)
+        */
     }
 }

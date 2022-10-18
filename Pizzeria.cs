@@ -19,15 +19,7 @@ namespace ProjectMOM
             livreurList.Add(livreur0);
             livreurList.Add(livreur1);
 
-            /*
-             Dans l'ordre de fin va y avoir :
 
-            commander (classe pizzeria)
-
-            livrer (classe Livreur)
-            encaisser (classe Commis)
-            terminerCommande (classe Commis)
-             */
         }
     }
 }
