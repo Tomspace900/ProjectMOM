@@ -22,6 +22,8 @@ namespace ProjectMOM
             /*
              Dans l'ordre de fin va y avoir :
 
+            commander (classe pizzeria)
+
             livrer (classe Livreur)
             encaisser (classe Commis)
             terminerCommande (classe Commis)
