@@ -7,9 +7,11 @@ namespace ProjectMOM
         public TailleBoisson taille;
         public double prix;
 
-        public Boisson(TypeBoisson type)
+        public Boisson(TailleBoisson taille, TypeBoisson type)
         {
+            this.taille = taille;
             this.type = type;
+            CalculerPrix(taille, type);
         }
 
         public double getPrix()
@@ -20,6 +22,12 @@ namespace ProjectMOM
         public string getNom()
         {
             return (type.ToString() + " " + taille.ToString());
+        }
+
+        // Calcule le prix en fonction de la taille et du type
+        public void CalculerPrix(TailleBoisson taille, TypeBoisson type)
+        {
+            this.prix = Catalogue.getPrixBoisson(taille, type);
         }
     }
 }
