@@ -8,32 +8,14 @@ namespace ProjectMOM
         public List<Commande> commandes = new List<Commande>();
         public List<Commande> commandesEnCours = new List<Commande>();
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Benvenuti a Marco");
 
-            CommisList commis = new CommisList();
-            commis.createCommis();
-            commis.createCommis();
-            ClientsList clients = new ClientsList();
-            clients.createClient(0123456789, "GENDRON", "Thomas", "rue du Trosy", "CLAMART", 92140);
-            new Client(01223562, "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360, DateOnly.FromDateTime(DateTime.Today));
-            Console.WriteLine(clients.isFirstCommand(0123456789));
-        }
-
-        //création d'une commande exemple
-       public void takeCommande()
-        {
-            Thread commande1 = new(new ThreadStart(createCommande1));
-            commande1.Start();
-
-        }
-
-
-        public static void createCommande1(){
-            Commis.nbCommandes += 1;
-            Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), Pizzeria.clientList.getByTel(01223562), Pizzeria.commisList.getById(1));
-            Thread.SetData(Thread.GetNamedDataSlot("Commande"), commande);
+            Commis commis = Pizzeria.commisList.createCommis();
+            Pizzeria.clientList.createClient("0123456789", "GENDRON", "Thomas", "rue du Trosy", "CLAMART", 92140);
+            Pizzeria.clientList.createClient("0112223562", "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360);
+            await commis.prendreCommande();
         }
 
 

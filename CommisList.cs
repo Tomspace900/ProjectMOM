@@ -13,10 +13,12 @@ namespace ProjectMOM
             this.commisList = new List<Commis>();
         }
 
-        public void createCommis()
+        public Commis createCommis()
         {
             idCommis += 1;
-            commisList.Add(new Commis(idCommis));
+            Commis commis = new Commis(idCommis);
+            commisList.Add(commis);
+            return commis;
         }
 
         public Commis getById(int id)

@@ -24,21 +24,6 @@ namespace ProjectMOM
             this.commis = commis;
         }
 
-
-        public static void createCommande1(Commis commis, Client client)
-        {
-            Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), client, commis);
-       
-            Thread.SetData(Thread.GetNamedDataSlot("Commande"), commande);
-        }
-
-        public static void createCommande2(Commis commis, Client client)
-        {
-            Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), new Client(01223562, "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360, DateOnly.FromDateTime(DateTime.Today)), commis);
-
-            Thread.SetData(Thread.GetNamedDataSlot("Commande"), commande);
-        }
-
         public void addPizza(TaillePizza taille, TypePizza type)
         {
             Pizza pizza = new Pizza(taille, type);

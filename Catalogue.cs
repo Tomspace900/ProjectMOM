@@ -3,13 +3,20 @@ namespace ProjectMOM
 {
     public class Catalogue
     {
-        public static Dictionary<TaillePizza, double> tabTaillePizza = new Dictionary<TaillePizza, double>()
+        public Dictionary<TaillePizza, double> tabTaillePizza;
+        public Dictionary<TypePizza, double> tabTypePizza = new Dictionary<TypePizza, double>();
+        public Dictionary<TailleBoisson, double> tabTailleBoisson = new Dictionary<TailleBoisson, double>();
+        public Dictionary<TypeBoisson, double> tabTypeBoisson = new Dictionary<TypeBoisson, double>();
+
+        public Catalogue()
+        {
+            tabTaillePizza = new Dictionary<TaillePizza, double>()
             {
                 { TaillePizza.S, 10},
                 { TaillePizza.M, 14},
                 { TaillePizza.L, 18},
             };
-        public static Dictionary<TypePizza, double> tabTypePizza = new Dictionary<TypePizza, double>()
+            tabTypePizza = new Dictionary<TypePizza, double>()
             {
                 { TypePizza.Margherita, 0 },
                 { TypePizza.Reine, 2.5 },
@@ -23,7 +30,7 @@ namespace ProjectMOM
                 { TypePizza.Raclette, 4 },
                 { TypePizza.Kebab, 3.5 },
             };
-        public static Dictionary<TailleBoisson, double> tabTailleBoisson = new Dictionary<TailleBoisson, double>()
+            tabTailleBoisson = new Dictionary<TailleBoisson, double>()
             {
                 { TailleBoisson.S, 2 },
                 { TailleBoisson.M, 3 },
@@ -31,7 +38,7 @@ namespace ProjectMOM
                 { TailleBoisson.XL, 5 },
                 { TailleBoisson.XXL, 6 },
             };
-        public static Dictionary<TypeBoisson, double> tabTypeBoisson = new Dictionary<TypeBoisson, double>()
+            tabTypeBoisson = new Dictionary<TypeBoisson, double>()
             {
                 { TypeBoisson.CocaCola, 0 },
                 { TypeBoisson.IceTea, 0 },
@@ -40,15 +47,6 @@ namespace ProjectMOM
                 { TypeBoisson.JusDAbricot, 1 },
                 { TypeBoisson.Heineken, 2 },
             };
-
-        public static double getPrixPizza(TaillePizza taille, TypePizza type)
-        {
-            return tabTaillePizza[taille] + tabTypePizza[type];
-        }
-
-        public static double getPrixBoisson(TailleBoisson taille, TypeBoisson type)
-        {
-            return tabTailleBoisson[taille] + tabTypeBoisson[type];
         }
     }
 }
