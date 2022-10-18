@@ -1,42 +1,34 @@
-﻿using System;
+using System;
+using System.Net;
+
 namespace ProjectMOM
 {
     public class Livreur
     {
         public int id;
-        public List<Commande> commandesALivrer;
-        public List<Commande> commandesLivrees;
+        public List<Commande> commandes;
         public int nbCommandes = 0; // Pour les stats
 
         public Livreur(int id)
         {
             this.id = id;
-            this.commandesALivrer = new List<Commande>();
-            this.commandesLivrees = new List<Commande>();
+            this.commandes = new List<Commande>();
         }
 
-        // Ajoute une commande à la liste commandesALivrer et change son statut
+        static async Task livrer(Commande commande)
+        {
+            commande.statut = Statut.EnLivraison;
+            Random random = new Random();
+            Console.WriteLine("Commande " + commande.num + " en livraison...");
+            await Task.Delay(random.Next(2000, 5000)); // Temps aléatoire mis pour livrer
+            return;
+        }
+
+        // Ajoute une commande à la liste du livreur
         public void addCommande(Commande commande)
         {
-            commandesALivrer.Add(commande);
-            commande.statut = Statut.EnLivraison;
+            commandes.Add(commande);
             nbCommandes += 1;
-        }
-
-        // Passe la commande dans les commandes livrees
-        public void livrerCommande(Commande commande)
-        {
-            if (commandesALivrer.Contains(commande))
-            {
-                commandesALivrer.Remove(commande);
-                commandesLivrees.Add(commande);
-                commande.commis.terminerCommande(commande);
-            }
-            else
-            {
-                Console.WriteLine("La commande n'était pas confiée à ce livreur");
-            }
         }
     }
 }
-

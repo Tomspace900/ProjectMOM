@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace ProjectMOM
 {
     public class Pizza : IConsommable
@@ -27,7 +27,7 @@ namespace ProjectMOM
         // Calcule le prix en fonction de la taille et du type
         public void CalculerPrix(TaillePizza taille, TypePizza type)
         {
-
+            this.prix = Catalogue.getPrixPizza(taille, type);
         }
     }
 }
