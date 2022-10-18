@@ -32,10 +32,17 @@ namespace ProjectMOM
             }
         }
 
-        // Actualise le prix de la commande en fonction de ce qui est ajouté
-        public void updatePrice(double price)
+        // Actualise le prix de la commande en fonction de ce qui est ajouté ou enlevé
+        public void updatePrice(double price, bool add)
         {
-            this.prix += price;
+            if (add)
+            {
+                this.prix += price;
+            }
+            else
+            {
+                this.prix -= price;
+            }
         }
 
         // Créé une pizza aléatoire
@@ -50,7 +57,7 @@ namespace ProjectMOM
             TypePizza type = (TypePizza)types.GetValue(j);
 
             Pizza pizza = new Pizza(taille, type);
-            updatePrice(Catalogue.getPrixPizza(pizza)); // Calcule le prix le chaque pizza
+            updatePrice(Catalogue.getPrixPizza(pizza), true); // Calcule le prix le chaque pizza
             return pizza;
         }
 
@@ -66,7 +73,7 @@ namespace ProjectMOM
             TypeBoisson type = (TypeBoisson)types.GetValue(j);
 
             Boisson boisson = new Boisson(taille, type);
-            updatePrice(Catalogue.getPrixBoisson(boisson)); // Calcule le prix le chaque boisson
+            updatePrice(Catalogue.getPrixBoisson(boisson), true); // Calcule le prix le chaque boisson
             return boisson;
         }
 
@@ -76,6 +83,7 @@ namespace ProjectMOM
             if (pizzas.Contains(pizza))
             {
                 pizzas.Remove(pizza);
+                updatePrice(Catalogue.getPrixPizza(pizza), false);
             }
             else
             {
@@ -89,6 +97,7 @@ namespace ProjectMOM
             if (boissons.Contains(boisson))
             {
                 boissons.Remove(boisson);
+                updatePrice(Catalogue.getPrixBoisson(boisson), false);
             }
             else
             {
