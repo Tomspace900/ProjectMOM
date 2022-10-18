@@ -24,15 +24,33 @@ namespace ProjectMOM
             this.commis = commis;
         }
 
-        public static void createCommande1(Commis commis, Client client)
+
+        public Pizza randomPizza()
         {
-            Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), client, commis);
+            Random random = new Random();
+            Array values = Enum.GetValues(typeof(Pizza));
+            int i = random.Next(values.Length);
+            return (Pizza)values.GetValue(i);
         }
 
-        public static void createCommande2(Commis commis, Client client)
+        public Boisson randomBoisson()
         {
-            Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), new Client(01223562, "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360, DateOnly.FromDateTime(DateTime.Today)), commis);
+            Random random = new Random();
+            Array values = Enum.GetValues(typeof(Boisson));
+            int i = random.Next(values.Length);
+            return (Boisson)values.GetValue(i);
         }
+
+
+        //public static void createCommande1(Commis commis, Client client)
+        //{
+        //    Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), client, commis);
+        //}
+
+        //public static void createCommande2(Commis commis, Client client)
+        //{
+        //    Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), new Client(01223562, "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360, DateOnly.FromDateTime(DateTime.Today)), commis);
+        //}
 
         // Ajoute une pizza à la commande
         public void addPizza(TaillePizza taille, TypePizza type)
@@ -61,8 +79,8 @@ namespace ProjectMOM
             }
         }
 
-        // Supprime une pizza de la commande
-        public void deletePizza(Boisson boisson)
+        // Supprime une boisson de la commande
+        public void deleteBoisson(Boisson boisson)
         {
             if (boissons.Contains(boisson))
             {
