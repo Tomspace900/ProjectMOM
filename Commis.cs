@@ -21,7 +21,7 @@ namespace ProjectMOM
             Pizzeria.clientList.createClient(01223562, "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360);
         }
 
-        public static void createCommande1(Commis commis,Client client)
+        public static void createCommande1(Commis commis, Client client)
         {
             nbCommandes += 1;
             Commande commande = new Commande(0, DateOnly.FromDateTime(DateTime.Today), client, commis);
@@ -35,7 +35,7 @@ namespace ProjectMOM
         }
 
         // Passe le statut d'une commande sur Fermee
-        public void terminerCommande(Commande commande)
+        static async Task terminerCommande(Commande commande)
         {
             if (commande.statut == Statut.EnLivraison)
             {

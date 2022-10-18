@@ -15,12 +15,11 @@ namespace ProjectMOM
             this.commandes = new List<Commande>();
         }
 
-        static async Task Livrer(Commande commande)
+        static async Task livrer(Commande commande)
         {
             commande.statut = Statut.EnLivraison;
             Random random = new Random();
             await Task.Delay(random.Next(2000, 5000)); // Temps aléatoire mis pour livrer
-            commande.commis.terminerCommande(commande);
             return;
         }
 

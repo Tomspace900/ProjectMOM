@@ -18,6 +18,14 @@ namespace ProjectMOM
             Livreur livreur1 = new Livreur(1);
             livreurList.Add(livreur0);
             livreurList.Add(livreur1);
+
+            /*
+             Dans l'ordre de fin va y avoir :
+
+            livrer (classe Livreur)
+            encaisser (classe Commis)
+            terminerCommande (classe Commis)
+             */
         }
     }
 }
