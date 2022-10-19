@@ -4,15 +4,11 @@ namespace ProjectMOM
     public class Commis
     {
         public int id;
-        public List<Commande> commandesEnAttenteLivraison;
-        public List<Commande> commandesLivrees;
-        public static int nbCommandes = 0; // Pour les stats
+        public int nbCommandes = 0; // Pour les stats
 
         public Commis(int id)
         {
             this.id = id;
-            this.commandesEnAttenteLivraison = new List<Commande>();
-            this.commandesLivrees = new List<Commande>();
         }
 
         public async Task prendreCommande()
@@ -32,7 +28,6 @@ namespace ProjectMOM
                 await creationClient(tel);
             }
             Console.WriteLine("Prise de commande");
-            
         }
 
         public async Task creationClient(String tel)
