@@ -14,13 +14,13 @@ namespace ProjectMOM
         public async Task prendreCommande()
         {
             //choix d'un numéro au hasard
-            String[] tels = new String[20];
-            tels[0] = "0124586598";
-            tels[1] = "0698965236";
-            tels[2] = "0765426982";
-            tels[3] = "0165687532";
-            tels[4] = "0123456789";
-            tels[5] = "0112223562";
+            List<string> tels = new List<string>();
+            tels.Add("0124586598");
+            tels.Add("0698965236");
+            tels.Add("0765426982");
+            tels.Add("0165687532");
+            tels.Add("0123456789");
+            tels.Add("0112223562");
             Random r = new Random();
             String tel = tels[r.Next(tels.Count())];
             Console.WriteLine("Recherche du numéro " + tel + " dans la liste des clients...");
@@ -28,6 +28,7 @@ namespace ProjectMOM
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Client déjà existant.");
+                Console.WriteLine("Bienvenue " + findClientByTel(tel).prenom + " " + findClientByTel(tel).nom + " !");
                 Console.ResetColor();
             }
             else if (findClientByTel(tel) == null)

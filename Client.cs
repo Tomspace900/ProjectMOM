@@ -26,6 +26,8 @@ namespace ProjectMOM
             this.prenom = prenom;
             this.adresse = adresse;
             this.datePremiereCommande = date;
+            Program.clientList.Add(this); // Ajout du client à la liste globale
+            nbCommande += 1;
         }
 
         public void addCommande()
