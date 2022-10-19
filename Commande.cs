@@ -36,19 +36,21 @@ namespace ProjectMOM
         public string displayCommande()
         {
             StringBuilder commande = new StringBuilder("");
-            commande.Append("\nTICKET COMMANDE N°" + num);
-            commande.Append("\nN° CLIENT " + client.tel + "\n");
-            commande.Append("\n-------Pizzas-------\n");
+            commande.Append("\n---------------------------\n");
+            commande.Append(" TICKET COMMANDE N°" + num);
+            commande.Append("\n N° CLIENT " + client.tel + "\n");
+            commande.Append("\n        -Pizzas-        \n");
             foreach (var pizza in pizzas)
             {
                 commande.Append("\n" + pizza.getNom() + "         " + pizza.getPrix() + "€");
             }
-            commande.Append("\n\n------Boissons------\n");
+            commande.Append("\n\n       -Boissons-       \n");
             foreach (var boisson in boissons)
             {
                 commande.Append("\n" + boisson.getNom() + "         " + boisson.getPrix() + "€");
             }
             commande.Append("\n\nTOTAL   " + prix + "€");
+            commande.Append("\n---------------------------\n");
             return commande.ToString();
         }
 

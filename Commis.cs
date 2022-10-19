@@ -6,9 +6,10 @@ namespace ProjectMOM
         public int id;
         public int nbCommandes = 0; // Stats
 
-        public Commis(int id)
+        public Commis()
         {
-            this.id = id;
+            this.id = Program.commisList.Count();
+            Program.commisList.Add(this);
         }
 
         public async Task prendreCommande()
@@ -38,7 +39,7 @@ namespace ProjectMOM
                 Console.ResetColor();
                 await creerClient(tel); // Creer un nouveau client
             }
-            await creerCommande(Program.commandes.Count(), findClientByTel(tel));
+            await creerCommande(Program.commandes.Count(), findClientByTel(tel)); // Creer une nouvelle commande
         }
 
         // Creer un nouveau client (prend 2s)

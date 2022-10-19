@@ -9,10 +9,11 @@ namespace ProjectMOM
         public List<Commande> commandes;
         public int nbCommandes = 0; // Stats
 
-        public Livreur(int id)
+        public Livreur()
         {
-            this.id = id;
+            this.id = Program.livreurList.Count();
             this.commandes = new List<Commande>();
+            Program.livreurList.Add(this);
         }
 
         static async Task livrer(Commande commande)
