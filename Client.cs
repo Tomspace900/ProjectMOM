@@ -8,7 +8,7 @@ namespace ProjectMOM
         public string prenom;
         public string adresse;
         public DateOnly datePremiereCommande;
-        public int nbCommande; // Pour les stats
+        public int nbCommande; // Stats
 
         public Client(string tel) // Créer un nouveau client
         {

@@ -36,7 +36,8 @@ namespace ProjectMOM
         public string displayCommande()
         {
             StringBuilder commande = new StringBuilder("");
-            commande.Append("\nTICKET COMMANDE N°" + num + "\n");
+            commande.Append("\nTICKET COMMANDE N°" + num);
+            commande.Append("\nN° CLIENT " + client.tel + "\n");
             commande.Append("\n-------Pizzas-------\n");
             foreach (var pizza in pizzas)
             {

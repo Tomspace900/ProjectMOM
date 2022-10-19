@@ -4,7 +4,7 @@ namespace ProjectMOM
     public class Commis
     {
         public int id;
-        public int nbCommandes = 0; // Pour les stats
+        public int nbCommandes = 0; // Stats
 
         public Commis(int id)
         {
@@ -41,11 +41,11 @@ namespace ProjectMOM
             await creerCommande(Program.commandes.Count(), findClientByTel(tel));
         }
 
-        // Creer un nouveau client (prend 1s)
+        // Creer un nouveau client (prend 2s)
         public async Task creerClient(String tel)
         {
             Console.WriteLine("Création d'un nouveau client...");
-            await Task.Delay(1000);
+            await Task.Delay(2000);
             Client client = new Client(tel);
             Program.clientList.Add(client); // Ajout d'un client à la liste globale
             Console.ForegroundColor = ConsoleColor.Green;
@@ -63,7 +63,8 @@ namespace ProjectMOM
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(commande.displayCommande());
             Console.ResetColor();
-            nbCommandes++; // Pour les stats
+            commande.client.addCommande(); // Stats
+            nbCommandes++; // Stats
         }
 
         // Trouver un client avec son tel

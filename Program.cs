@@ -7,9 +7,10 @@ namespace ProjectMOM
         public static Cuisine cuisine = new Cuisine();
         public static Catalogue catalogue = new Catalogue();
         public static CommisList commisList = new CommisList();
-        public static List<Client> clientList = new List<Client>(); // en test
+        public static List<Client> clientList = new List<Client>();
         public static List<Livreur> livreurList = new List<Livreur>();
         public static List<Commande> commandes = new List<Commande>();
+        public static int nbCommandes = commandes.Count(); // Stats
 
         static async Task Main(string[] args)
         {

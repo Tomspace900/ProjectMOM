@@ -7,7 +7,7 @@ namespace ProjectMOM
     {
         public int id;
         public List<Commande> commandes;
-        public int nbCommandes = 0; // Pour les stats
+        public int nbCommandes = 0; // Stats
 
         public Livreur(int id)
         {

@@ -5,9 +5,9 @@ namespace ProjectMOM
     {
         public static Dictionary<TaillePizza, double> tabTaillePizza = new Dictionary<TaillePizza, double>()
             {
-                { TaillePizza.S, 10},
-                { TaillePizza.M, 14},
-                { TaillePizza.L, 18},
+                { TaillePizza.S, 8},
+                { TaillePizza.M, 12},
+                { TaillePizza.L, 16},
             };
         public static Dictionary<TypePizza, double> tabTypePizza = new Dictionary<TypePizza, double>()
             {
