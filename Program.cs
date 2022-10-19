@@ -4,6 +4,8 @@ namespace ProjectMOM
 {
     public class Program
     {
+
+
         public static List<Task> tasks = new List<Task>(); // Liste des tâches
         public static List<Commis> commisList = new List<Commis>();
         public static List<Client> clientList = new List<Client>();
@@ -14,10 +16,6 @@ namespace ProjectMOM
         static async Task Main(string[] args)
         {
             coloredString("Benvenuti a Marco\n", ConsoleColor.Yellow);
-
-            // Initialisation de la cuisine et du catalogue
-            Cuisine cuisine = new Cuisine();
-            Catalogue catalogue = new Catalogue();
 
             // Initialisation du commis
             Commis commis = new Commis();
@@ -56,8 +54,6 @@ namespace ProjectMOM
 
         commander (classe main)
         preparation (classe cuisine)
-        ...
-
         livrer (classe Livreur)
         encaisser (classe Commis)
         terminerCommande (classe Commis)

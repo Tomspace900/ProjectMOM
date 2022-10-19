@@ -25,9 +25,9 @@ namespace ProjectMOM
             Random r = new Random();
             String tel = tels[r.Next(tels.Count())];
             Console.WriteLine("Le commis recherche le numéro " + tel + " dans la liste des clients...");
-            await Client.isNewClient(tel);
-            Client newClient = Client.findClientByTel(tel);
-            await creerCommande(Program.commandes.Count(), newClient, commis); // Creer une nouvelle commande
+            await Client.isNewClient(tel); // Cherche s'il s'agit d'un nouveau ou ancien client
+            Client client = Client.findClientByTel(tel);
+            await creerCommande(Program.commandes.Count(), client, commis); // Creer une nouvelle commande
         }
 
         // Creer une nouvelle commande (prend 1s)
@@ -37,15 +37,21 @@ namespace ProjectMOM
             await Task.Delay(1000);
             Commande commande = new Commande(index, client, commis); // Création de la commande
             Program.commandes.Add(commande); // Ajout de la commande à la liste globale
-
-            Program.coloredString(commande.displayCommande(), ConsoleColor.Magenta);
+            Program.coloredString(commande.displayCommande(), ConsoleColor.Magenta); // Affiche la commande
             commande.client.addCommande(); // Stats
             commis.nbCommandes++; // Stats
+            Program.coloredString("Envoie de la commande " + commande.num + " en cuisine, préparation en cours...", ConsoleColor.Yellow);
+            await Cuisine.preparer(commande); // Envoie la commande en cuisine
         }
 
         // Attribue une commande à un livreur
-        public void attribuerCommandeLivreur(Commande commande, Livreur livreur)
+        public static async Task preparationTerminee(Commande commande)
         {
+            Program.coloredString("Commande " + commande.num + " prête !", ConsoleColor.Yellow);
+
+            // TODO C'EST ICI MATHILDE
+
+            await Livreur.livrer(commande); // Envoie la commande au livreur
             livreur.addCommande(commande);
         }
 
