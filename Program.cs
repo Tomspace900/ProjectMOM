@@ -32,7 +32,7 @@ namespace ProjectMOM
             Client ancienClient1 = new Client("0123456789", "GENDRON", "Thomas", "69 rue du Trosy CLAMART 92140", new DateOnly(2018, 10, 19));
             Client ancienClient2 = new Client("0112223562", "Paysant", "Mathilde", "34 du four Bry sur Marne 94360", new DateOnly(2020, 08, 21));
 
-            await commis.prendreCommande(); // Lance la prise de commande d'un client
+            await Commis.prendreCommande(commis); // Lance la prise de commande d'un client
         }
 
         /*

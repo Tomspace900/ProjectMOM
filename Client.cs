@@ -30,10 +30,55 @@ namespace ProjectMOM
             nbCommande += 1;
         }
 
+        public static async Task isNewClient(string tel)
+        {
+            Client client = findClientByTel(tel);
+            if (client != null)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Le client existe déjà.");
+                Console.WriteLine("Bienvenue " + client.prenom + " " + client.nom + " !");
+                Console.ResetColor();
+            }
+            else if (client == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Client introuvable.");
+                Console.ResetColor();
+                await creerClient(tel); // Creer un nouveau client
+            }
+        }
+
+        // Trouver un client avec son tel
+        public static Client findClientByTel(string tel)
+        {
+            foreach (Client client in Program.clientList)
+            {
+                if (tel == client.tel)
+                {
+                    return client;
+                }
+            }
+            return null;
+        }
+
+        // Creer un nouveau client (prend 2s)
+        static async Task creerClient(String tel)
+        {
+            Console.WriteLine("Création du nouveau client...");
+            await Task.Delay(2000);
+            Client client = new Client(tel);
+            Program.clientList.Add(client); // Ajout d'un client à la liste globale
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Nouveau client " + tel + " créé.");
+            Console.ResetColor();
+        }
+
         public void addCommande()
         {
             nbCommande += 1;
         }
+
     }
 }
 
