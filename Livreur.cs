@@ -19,7 +19,9 @@ namespace ProjectMOM
         {
             commande.statut = Statut.EnLivraison;
             Random random = new Random();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Commande " + commande.num + " en livraison...");
+            Console.ResetColor();
             await Task.Delay(random.Next(2000, 5000)); // Temps aléatoire mis pour livrer
             return;
         }

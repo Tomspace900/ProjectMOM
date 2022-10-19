@@ -17,25 +17,62 @@ namespace ProjectMOM
             String[] tels = new String[20];
             tels[0] = "0124586598";
             tels[1] = "0698965236";
-            tels[2] = "0765426982";   
+            tels[2] = "0765426982";
             tels[3] = "0165687532";
+            tels[4] = "0123456789";
+            tels[5] = "0112223562";
             Random r = new Random();
-            String tel = tels[r.Next(4)];
-            Console.WriteLine("Recherche du numéro" + tel +" dans la liste des clients...");
-            if (Pizzeria.clientList.getByTel(tel) == null)
+            String tel = tels[r.Next(tels.Count())];
+            Console.WriteLine("Recherche du numéro " + tel + " dans la liste des clients...");
+            if (findClientByTel(tel) != null)
             {
-                Console.WriteLine("Client introuvable.");
-                await creationClient(tel);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Client déjà existant.");
+                Console.ResetColor();
             }
-            Console.WriteLine("Prise de commande");
+            else if (findClientByTel(tel) == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Client introuvable.");
+                Console.ResetColor();
+                await creerClient(tel); // Creer un nouveau client
+            }
+            await creerCommande(Program.commandes.Count(), findClientByTel(tel));
         }
 
-        public async Task creationClient(String tel)
+        // Creer un nouveau client (prend 1s)
+        public async Task creerClient(String tel)
         {
             Console.WriteLine("Création d'un nouveau client...");
-            //ajouter temps
-            Pizzeria.clientList.createClient(tel,"nom "+tel,"prénom "+tel,"adresse "+tel,"ville "+tel,0);
-            Console.WriteLine("Nouveau client "+tel+" créé.");
+            await Task.Delay(1000);
+            Client client = new Client(tel);
+            Program.clientList.Add(client); // Ajout d'un client à la liste globale
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Nouveau client " + tel + " créé.");
+            Console.ResetColor();
+        }
+
+        // Creer une nouvelle commande (prend 1s)
+        public async Task creerCommande(int index, Client client)
+        {
+            Console.WriteLine("Prise de commande en cours...");
+            await Task.Delay(1000);
+            Commande commande = new Commande(index, client, this); // Création de la commande
+            Program.commandes.Add(commande); // Ajout de la commande à la liste globale
+            nbCommandes++; // Pour les stats
+        }
+
+        // Trouver un client avec son tel
+        public Client findClientByTel(string tel)
+        {
+            foreach (Client client in Program.clientList)
+            {
+                if (tel == client.tel)
+                {
+                    return client;
+                }
+            }
+            return null;
         }
 
         // Attribue une commande à un livreur

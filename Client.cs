@@ -3,24 +3,29 @@ namespace ProjectMOM
 {
     public class Client
     {
+        public string tel; // L'identifiant unique
         public string nom;
         public string prenom;
-        public string tel;
-        public string rue;
-        public string ville;
-        public int zip;
-        public DateOnly dateCommande;
+        public string adresse;
+        public DateOnly datePremiereCommande;
         public int nbCommande; // Pour les stats
 
-        public Client(string tel, string nom, string prenom, string rue, string ville, int zip, DateOnly dateCommande)
+        public Client(string tel) // Créer un nouveau client
+        {
+            this.tel = tel;
+            this.nom = "nom " + tel;
+            this.prenom = "prénom " + tel;
+            this.adresse = "adresse " + tel;
+            this.datePremiereCommande = DateOnly.FromDateTime(DateTime.Today);
+        }
+
+        public Client(string tel, string nom, string prenom, string adresse, DateOnly date) // Simuler un ancien client
         {
             this.tel = tel;
             this.nom = nom;
             this.prenom = prenom;
-            this.rue = rue;
-            this.ville = ville;
-            this.zip = zip;
-            this.dateCommande = dateCommande;
+            this.adresse = adresse;
+            this.datePremiereCommande = date;
         }
 
         public void addCommande()

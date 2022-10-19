@@ -7,7 +7,7 @@ namespace ProjectMOM
         public static Cuisine cuisine = new Cuisine();
         public static Catalogue catalogue = new Catalogue();
         public static CommisList commisList = new CommisList();
-        public static ClientsList clientList = new ClientsList();
+        public static List<Client> clientList = new List<Client>(); // en test
         public static List<Livreur> livreurList = new List<Livreur>();
         public static List<Commande> commandes = new List<Commande>();
 
@@ -21,9 +21,9 @@ namespace ProjectMOM
             livreurList.Add(livreur0);
             livreurList.Add(livreur1);
 
-            Commis commis = Pizzeria.commisList.createCommis();
-            clientList.createClient("0123456789", "GENDRON", "Thomas", "rue du Trosy", "CLAMART", 92140);
-            clientList.createClient("0112223562", "Paysant", "Mathilde", "34 du four", "Bry sur Marne", 94360);
+            Commis commis = commisList.createCommis();
+            Client ancienClient1 = new Client("0123456789", "GENDRON", "Thomas", "69 rue du Trosy CLAMART 92140", new DateOnly(2018, 10, 19));
+            Client ancienClient2 = new Client("0112223562", "Paysant", "Mathilde", "34 du four Bry sur Marne 94360", new DateOnly(2020, 08, 21));
             await commis.prendreCommande();
         }
 
