@@ -13,7 +13,7 @@ namespace ProjectMOM
 
         public async Task prendreCommande()
         {
-            //choix d'un numéro au hasard
+            // Choix d'un numéro au hasard (renseigné par le client)
             List<string> tels = new List<string>();
             tels.Add("0124586598");
             tels.Add("0698965236");
@@ -60,6 +60,9 @@ namespace ProjectMOM
             await Task.Delay(1000);
             Commande commande = new Commande(index, client, this); // Création de la commande
             Program.commandes.Add(commande); // Ajout de la commande à la liste globale
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(commande.displayCommande());
+            Console.ResetColor();
             nbCommandes++; // Pour les stats
         }
 

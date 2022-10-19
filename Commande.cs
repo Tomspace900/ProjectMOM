@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 namespace ProjectMOM
 {
     public class Commande
@@ -30,6 +31,24 @@ namespace ProjectMOM
             {
                 boissons.Add(randomBoisson(random)); // Pareil pour les boissons
             }
+        }
+
+        public string displayCommande()
+        {
+            StringBuilder commande = new StringBuilder("");
+            commande.Append("\nTICKET COMMANDE N°" + num + "\n");
+            commande.Append("\n-------Pizzas-------\n");
+            foreach (var pizza in pizzas)
+            {
+                commande.Append("\n" + pizza.getNom() + "         " + pizza.getPrix() + "€");
+            }
+            commande.Append("\n\n------Boissons------\n");
+            foreach (var boisson in boissons)
+            {
+                commande.Append("\n" + boisson.getNom() + "         " + boisson.getPrix() + "€");
+            }
+            commande.Append("\n\nTOTAL   " + prix + "€");
+            return commande.ToString();
         }
 
         // Actualise le prix de la commande en fonction de ce qui est ajouté ou enlevé
