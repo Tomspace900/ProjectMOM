@@ -37,9 +37,8 @@ namespace ProjectMOM
             await Task.Delay(1000);
             Commande commande = new Commande(index, client, commis); // Création de la commande
             Program.commandes.Add(commande); // Ajout de la commande à la liste globale
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(commande.displayCommande());
-            Console.ResetColor();
+
+            Program.coloredString(commande.displayCommande(), ConsoleColor.Magenta);
             commande.client.addCommande(); // Stats
             commis.nbCommandes++; // Stats
         }

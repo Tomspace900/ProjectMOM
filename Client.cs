@@ -36,15 +36,11 @@ namespace ProjectMOM
             if (client != null)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Le client existe déjà.");
-                Console.WriteLine("Bienvenue " + client.prenom + " " + client.nom + " !");
-                Console.ResetColor();
+                Program.coloredString("Le client existe déjà.\nBienvenue " + client.prenom + " " + client.nom + " !", ConsoleColor.Green);
             }
             else if (client == null)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Client introuvable.");
-                Console.ResetColor();
+                Program.coloredString("Client introuvable.", ConsoleColor.Red);
                 await creerClient(tel); // Creer un nouveau client
             }
         }

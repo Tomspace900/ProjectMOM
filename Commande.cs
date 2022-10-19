@@ -36,7 +36,7 @@ namespace ProjectMOM
         public string displayCommande()
         {
             StringBuilder commande = new StringBuilder("");
-            commande.Append("\n---------------------------\n");
+            commande.Append("---------------------------\n");
             commande.Append(" TICKET COMMANDE N°" + num);
             commande.Append("\n N° CLIENT " + client.tel + "\n");
             commande.Append("\n        -Pizzas-        \n");
@@ -50,7 +50,7 @@ namespace ProjectMOM
                 commande.Append("\n" + boisson.getNom() + "         " + boisson.getPrix() + "€");
             }
             commande.Append("\n\nTOTAL   " + prix + "€");
-            commande.Append("\n---------------------------\n");
+            commande.Append("\n---------------------------");
             return commande.ToString();
         }
 
