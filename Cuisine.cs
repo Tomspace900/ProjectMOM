@@ -11,7 +11,7 @@ namespace ProjectMOM
         public static async Task preparer(Commande commande)
         {
             int i = commande.pizzas.Count;
-            await Task.Delay(i * 2000); // Temps de preparation proportionnel à la longueur de la commande -> 1 pizza = 2s
+            await Task.Delay(i * 8000); // Temps de preparation proportionnel à la longueur de la commande -> 1 pizza = 10s
             await Commis.preparationTerminee(commande);
         }
     }

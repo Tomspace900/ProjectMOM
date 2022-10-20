@@ -31,13 +31,6 @@ namespace ProjectMOM
             await lancerTaches(10, commis);
 
             Task.WaitAll(tasks.ToArray());
-            foreach (var livreur in livreurList)
-            {
-                foreach (var commande in livreur.commandesEnAttente)
-                {
-                    Console.WriteLine(livreur.id + " " + commande.num);
-                }
-            }
         }
 
         public static async Task lancerTaches(int nbTaches, Commis commis)

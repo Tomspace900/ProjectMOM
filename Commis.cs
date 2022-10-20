@@ -34,7 +34,8 @@ namespace ProjectMOM
         static async Task creerCommande(int index, Client client, Commis commis)
         {
             Console.WriteLine(client.prenom + " est en train de commander...");
-            await Task.Delay(1000);
+            Random random = new Random();
+            await Task.Delay(random.Next(1000, 3000)); // Temps aléatoire mis pour commander (1s - 3s)
             Commande commande = new Commande(index, client, commis); // Création de la commande
             Program.commandes.Add(commande); // Ajout de la commande à la liste globale
             Program.coloredString(commande.displayCommande(), ConsoleColor.Magenta); // Affiche la commande
@@ -47,10 +48,9 @@ namespace ProjectMOM
         // Récupère la commande des cuisines pour donner à un livreur
         public static async Task preparationTerminee(Commande commande)
         {
-            Program.coloredString("Commande " + commande.num + " prête !", ConsoleColor.Yellow);
+            Program.coloredString("Commande " + commande.num + " prête !", ConsoleColor.White);
 
-            Livreur.attribuerLivreur(commande); // Attribue la commande à un livreur
-
+            await Livreur.attribuerLivreur(commande); // Attribue la commande au livreur qui a le moins de commandes
         }
 
         // Passe le statut d'une commande sur Fermee
