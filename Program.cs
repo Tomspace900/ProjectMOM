@@ -28,16 +28,23 @@ namespace ProjectMOM
             Client ancienClient1 = new Client("0123456789", "GENDRON", "Thomas", "69 rue du Trosy CLAMART 92140", new DateOnly(2018, 10, 19));
             Client ancienClient2 = new Client("0112223562", "Paysant", "Mathilde", "34 du four Bry sur Marne 94360", new DateOnly(2020, 08, 21));
 
-            await lancerTaches(1, commis);
+            await lancerTaches(10, commis);
 
             Task.WaitAll(tasks.ToArray());
+            foreach (var livreur in livreurList)
+            {
+                foreach (var commande in livreur.commandesEnAttente)
+                {
+                    Console.WriteLine(livreur.id + " " + commande.num);
+                }
+            }
         }
 
         public static async Task lancerTaches(int nbTaches, Commis commis)
         {
             for (int i = 0; i < nbTaches; i++)
             {
-                Task task = Commis.prendreCommande(commis); // Lance la prise de commande d'un client
+                Task task = Commis.prendreCommande(i, commis); // Lance la prise de commande d'un client
                 tasks.Add(task);
             }
         }

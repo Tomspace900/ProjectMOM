@@ -12,7 +12,7 @@ namespace ProjectMOM
             Program.commisList.Add(this);
         }
 
-        public static async Task prendreCommande(Commis commis)
+        public static async Task prendreCommande(int index, Commis commis)
         {
             // Choix d'un numéro au hasard (renseigné par le client)
             List<string> tels = new List<string>();
@@ -23,11 +23,11 @@ namespace ProjectMOM
             tels.Add("0123456789"); // Client existant Thomas GENDRON
             tels.Add("0112223562"); // Client existant Mathilde PAYSANT
             Random r = new Random();
-            String tel = tels[r.Next(tels.Count())];
+            string tel = tels[r.Next(tels.Count())];
             Console.WriteLine("Le commis recherche le numéro " + tel + " dans la liste des clients...");
             await Client.isNewClient(tel); // Cherche s'il s'agit d'un nouveau ou ancien client
             Client client = Client.findClientByTel(tel);
-            await creerCommande(Program.commandes.Count(), client, commis); // Creer une nouvelle commande
+            await creerCommande(index, client, commis); // Creer une nouvelle commande
         }
 
         // Creer une nouvelle commande (prend 1s)
@@ -44,15 +44,13 @@ namespace ProjectMOM
             await Cuisine.preparer(commande); // Envoie la commande en cuisine
         }
 
-        // Attribue une commande à un livreur
+        // Récupère la commande des cuisines pour donner à un livreur
         public static async Task preparationTerminee(Commande commande)
         {
             Program.coloredString("Commande " + commande.num + " prête !", ConsoleColor.Yellow);
 
-            // TODO C'EST ICI MATHILDE
+            Livreur.attribuerLivreur(commande); // Attribue la commande à un livreur
 
-            await Livreur.livrer(commande); // Envoie la commande au livreur
-            livreur.addCommande(commande);
         }
 
         // Passe le statut d'une commande sur Fermee

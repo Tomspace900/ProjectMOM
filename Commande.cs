@@ -8,6 +8,7 @@ namespace ProjectMOM
         public double prix = 0;
         public Client client;
         public Commis commis;
+        public Livreur livreur;
         public List<Pizza> pizzas = new List<Pizza>();
         public List<Boisson> boissons = new List<Boisson>();
         public Statut statut = Statut.EnPreparation;

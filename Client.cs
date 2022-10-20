@@ -65,9 +65,7 @@ namespace ProjectMOM
             await Task.Delay(2000);
             Client client = new Client(tel);
             Program.clientList.Add(client); // Ajout d'un client à la liste globale
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Nouveau client " + tel + " créé.");
-            Console.ResetColor();
+            Program.coloredString("Nouveau client " + tel + " créé.", ConsoleColor.Green);
         }
 
         public void addCommande()
