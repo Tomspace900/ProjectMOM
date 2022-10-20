@@ -68,9 +68,11 @@ namespace ProjectMOM
             Program.coloredString("Nouveau client " + tel + " créé.", ConsoleColor.Green);
         }
 
-        public void addCommande()
+        public async Task recupererCommande(Commande commande)
         {
-            nbCommande += 1;
+            nbCommande += 1; // Stats
+            commande.encaissement = Encaissement.Payee; // Le client paye
+            Program.coloredString("Commande " + commande.num + " livrée à " + commande.client.prenom + " !", ConsoleColor.Green);
         }
 
     }

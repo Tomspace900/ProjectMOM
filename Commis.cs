@@ -39,7 +39,6 @@ namespace ProjectMOM
             Commande commande = new Commande(index, client, commis); // Création de la commande
             Program.commandes.Add(commande); // Ajout de la commande à la liste globale
             Program.coloredString(commande.displayCommande(), ConsoleColor.Magenta); // Affiche la commande
-            commande.client.addCommande(); // Stats
             commis.nbCommandes++; // Stats
             Program.coloredString("Envoie de la commande " + commande.num + " en cuisine, préparation en cours...", ConsoleColor.Yellow);
             await Cuisine.preparer(commande); // Envoie la commande en cuisine
@@ -54,13 +53,14 @@ namespace ProjectMOM
         }
 
         // Passe le statut d'une commande sur Fermee
-        public void terminerCommande(Commande commande)
+        public async Task terminerCommande(Commande commande)
         {
             if (commande.statut == Statut.EnLivraison)
             {
                 if (commande.encaissement == Encaissement.Payee)
                 {
                     commande.statut = Statut.Fermee;
+                    Program.coloredString("La commande " + commande.num + " est encaissée (" + commande.prix + "€) et fermée.", ConsoleColor.White);
                     return;
                 }
                 else

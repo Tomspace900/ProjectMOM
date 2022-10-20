@@ -35,22 +35,18 @@ namespace ProjectMOM
                 }
                 nbCommandes++;
             }
-            await livrer(commande);
+            await commande.livreur.livrer(commande);
         }
 
-        public static async Task livrer(Commande commande)
+        public async Task livrer(Commande commande)
         {
             commande.statut = Statut.EnLivraison;
             Random random = new Random();
             Program.coloredString("Commande " + commande.num + " en livraison...", ConsoleColor.Yellow);
             await Task.Delay(random.Next(2000, 5000)); // Temps aléatoire mis pour livrer (2s - 5s)
-            commande.livreur.commandes.Remove(commande); // Supprime des commandes du livreur une fois livrée
-            Program.coloredString("Commande " + commande.num + " livrée !", ConsoleColor.Green);
-            //if (commande.livreur.commandesEnAttente != null)
-            //{
-            //    commande.livreur.commandeEnCours = commande.livreur.commandesEnAttente[0];
-            //    commande.livreur.commandesEnAttente.Remove(commande.livreur.commandesEnAttente[0]);
-            //}
+            await commande.client.recupererCommande(commande); // Donner la commande au client
+            commandes.Remove(commande); // Supprime des commandes du livreur une fois livrée
+            await commande.commis.terminerCommande(commande); // Rapporter au commis pour fermer la commander
             return;
         }
 

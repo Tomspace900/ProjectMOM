@@ -33,7 +33,7 @@ namespace ProjectMOM
             Task.WaitAll(tasks.ToArray());
         }
 
-        public static async Task lancerTaches(int nbTaches, Commis commis)
+        public static async Task lancerTaches(int nbTaches, Commis commis) // nbTaches determine le nombre de commandes simultanées
         {
             for (int i = 0; i < nbTaches; i++)
             {
