@@ -18,6 +18,8 @@ namespace ProjectMOM
         {
             coloredString("Benvenuti a Marco\n", ConsoleColor.Yellow);
 
+            int nombreDeCommandes = 5; // Nombre de commandes
+
             // Initialisation du commis
             Commis commis = new Commis();
 
@@ -29,11 +31,34 @@ namespace ProjectMOM
             Client ancienClient1 = new Client("0123456789", "GENDRON", "Thomas", "69 rue du Trosy CLAMART 92140", "CLAMART", new DateOnly(2018, 10, 19));
             Client ancienClient2 = new Client("0112223562", "Paysant", "Mathilde", "34 du four Bry sur Marne 94360", "Bry sur Marne", new DateOnly(2020, 08, 21));
 
-            int nombreDeCommandes = 5; // Nombre de commandes
+            await lancerTaches(nombreDeCommandes, commis); // Lance les commandes
+            Task.WaitAll(tasks.ToArray()); // Attend que toutes les commandes soient terminées
 
-            await lancerTaches(nombreDeCommandes, commis);
-            Task.WaitAll(tasks.ToArray());
+            afficherStats(); // Affiche les stats
+        }
 
+
+
+
+        public static async Task lancerTaches(int nbTaches, Commis commis) // nbTaches determine le nombre de commandes simultanées
+        {
+            for (int i = 0; i < nbTaches; i++)
+            {
+                await Task.Delay(2001); // Delais d'arrivée entre les clients
+                Task task = Commis.prendreCommande(i, commis); // Lance la prise de commande d'un client
+                tasks.Add(task);
+            }
+        }
+
+        public static void coloredString(string text, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
+        public static void afficherStats()
+        {
             int choix = 1;
             affichageClients choixAffichage;
             switch (choix)
@@ -55,23 +80,6 @@ namespace ProjectMOM
             Console.Write("Prix moyen des commandes : " + prixMoyenCommandes() + "€\n");
             Console.Write("Depense moyenne des clients : " + depenseMoyenne() + "€");
             //Console.Read();
-        }
-
-        public static async Task lancerTaches(int nbTaches, Commis commis) // nbTaches determine le nombre de commandes simultanées
-        {
-            for (int i = 0; i < nbTaches; i++)
-            {
-                await Task.Delay(2001);
-                Task task = Commis.prendreCommande(i, commis); // Lance la prise de commande d'un client
-                tasks.Add(task);
-            }
-        }
-
-        public static void coloredString(string text, ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
-            Console.WriteLine(text);
-            Console.ResetColor();
         }
 
         delegate void affichageClients();
