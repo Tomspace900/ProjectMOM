@@ -74,6 +74,11 @@ namespace ProjectMOM
                 Console.WriteLine("La commande n'est pas encore en livraison");
             }
         }
+
+        public override string ToString()
+        {
+            return "Commis "+id+" : "+nbCommandes+" commande(s)";
+        }
     }
 
 

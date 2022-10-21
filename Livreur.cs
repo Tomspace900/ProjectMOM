@@ -56,5 +56,10 @@ namespace ProjectMOM
             commandes.Add(commande);
             nbCommandes += 1;
         }
+
+        public override string ToString()
+        {
+            return "Livreur "+id+" : "+nbCommandes+" commande(s)";
+        }
     }
 }
