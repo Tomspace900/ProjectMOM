@@ -40,8 +40,8 @@ namespace ProjectMOM
             Program.commandes.Add(commande); // Ajout de la commande à la liste globale
             Program.coloredString(commande.displayCommande(), ConsoleColor.Magenta); // Affiche la commande
             commis.nbCommandes++; // Stats
-            Program.coloredString("Envoie de la commande " + commande.num + " en cuisine, préparation en cours...", ConsoleColor.Yellow);
-            await Cuisine.preparer(commande); // Envoie la commande en cuisine
+            Program.coloredString("Envoi de la commande " + commande.num + " en cuisine, préparation en cours...", ConsoleColor.Yellow);
+            await Cuisine.preparer(commande); // Envoi la commande en cuisine
         }
 
         // Récupère la commande des cuisines pour donner à un livreur
@@ -61,6 +61,7 @@ namespace ProjectMOM
                 {
                     commande.statut = Statut.Fermee;
                     Program.coloredString("La commande " + commande.num + " est encaissée (" + commande.prix + "€) et fermée.", ConsoleColor.White);
+                    commande.client.depenses += commande.prix;
                     return;
                 }
                 else

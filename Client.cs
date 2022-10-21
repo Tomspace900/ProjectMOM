@@ -7,24 +7,28 @@ namespace ProjectMOM
         public string nom;
         public string prenom;
         public string adresse;
+        public string ville;
         public DateOnly datePremiereCommande;
         public int nbCommande; // Stats
+        public double depenses = 0;
 
         public Client(string tel) // Créer un nouveau client
         {
             this.tel = tel;
             this.nom = "nom " + tel;
             this.prenom = "prénom " + tel;
-            this.adresse = "adresse " + tel;
+            this.adresse = "adresse " + tel; 
+            this.ville = "ville " + tel;
             this.datePremiereCommande = DateOnly.FromDateTime(DateTime.Today);
         }
 
-        public Client(string tel, string nom, string prenom, string adresse, DateOnly date) // Simuler un ancien client
+        public Client(string tel, string nom, string prenom, string adresse, string ville, DateOnly date) // Simuler un ancien client
         {
             this.tel = tel;
             this.nom = nom;
             this.prenom = prenom;
             this.adresse = adresse;
+            this.ville = ville;
             this.datePremiereCommande = date;
             Program.clientList.Add(this); // Ajout du client à la liste globale
             nbCommande += 1;
@@ -75,6 +79,10 @@ namespace ProjectMOM
             Program.coloredString("Commande " + commande.num + " livrée à " + commande.client.prenom + " !", ConsoleColor.Green);
         }
 
+        public override String ToString()
+        {
+            return nom+" "+prenom+" ("+tel+") : "+nbCommande+" commande(s) ("+depenses+")";
+        }
     }
 }
 
