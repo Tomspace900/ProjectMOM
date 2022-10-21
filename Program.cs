@@ -12,6 +12,7 @@ namespace ProjectMOM
         public static List<Client> clientList = new List<Client>();
         public static List<Livreur> livreurList = new List<Livreur>();
         public static List<Commande> commandes = new List<Commande>();
+        public static Cuisine cuisine = new Cuisine();
         public int nbCommandes = commandes.Count(); // Stats
 
         static async Task Main(string[] args)

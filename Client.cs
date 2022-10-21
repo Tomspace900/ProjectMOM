@@ -62,7 +62,7 @@ namespace ProjectMOM
         }
 
         // Creer un nouveau client (prend 2s)
-        static async Task creerClient(String tel)
+        static async Task creerClient(string tel)
         {
             Console.WriteLine("Création du nouveau client...");
             await Task.Delay(1500);
