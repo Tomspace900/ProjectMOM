@@ -9,15 +9,15 @@ namespace ProjectMOM
         public string adresse;
         public string ville;
         public DateOnly datePremiereCommande;
-        public int nbCommande; // Stats
+        public int nbCommande = 0; // Stats
         public double depenses = 0;
 
         public Client(string tel) // Créer un nouveau client
         {
             this.tel = tel;
-            this.nom = "nom " + tel;
-            this.prenom = "prénom " + tel;
-            this.adresse = "adresse " + tel; 
+            this.nom = tel;
+            this.prenom = "Prénom";
+            this.adresse = "adresse " + tel;
             this.ville = "ville " + tel;
             this.datePremiereCommande = DateOnly.FromDateTime(DateTime.Today);
         }
@@ -31,7 +31,6 @@ namespace ProjectMOM
             this.ville = ville;
             this.datePremiereCommande = date;
             Program.clientList.Add(this); // Ajout du client à la liste globale
-            nbCommande += 1;
         }
 
         public static async Task isNewClient(string tel)
@@ -66,7 +65,7 @@ namespace ProjectMOM
         static async Task creerClient(String tel)
         {
             Console.WriteLine("Création du nouveau client...");
-            await Task.Delay(2000);
+            await Task.Delay(1500);
             Client client = new Client(tel);
             Program.clientList.Add(client); // Ajout d'un client à la liste globale
             Program.coloredString("Nouveau client " + tel + " créé.", ConsoleColor.Green);
@@ -81,7 +80,7 @@ namespace ProjectMOM
 
         public override String ToString()
         {
-            return nom+" "+prenom+" ("+tel+") : "+nbCommande+" commande(s) ("+depenses+")";
+            return nom + " " + prenom + " (" + tel + ") : " + nbCommande + " commande(s) (" + depenses + "€)";
         }
     }
 }

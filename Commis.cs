@@ -33,7 +33,6 @@ namespace ProjectMOM
         // Creer une nouvelle commande (prend 1s)
         static async Task creerCommande(int index, Client client, Commis commis)
         {
-            Console.WriteLine(client.prenom + " est en train de commander...");
             Random random = new Random();
             await Task.Delay(random.Next(1000, 3000)); // Temps aléatoire mis pour commander (1s - 3s)
             Commande commande = new Commande(index, client, commis); // Création de la commande
